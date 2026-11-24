@@ -129,7 +129,7 @@ st.set_page_config(page_title="Basketball Game Day Scheduler", page_icon="🏀",
 st.title("🏀 Basketball Game Day Scheduler")
 st.write("Set your tipoff time, then describe the changes you want to make.")
 if "items" not in st.session_state:
-    st.session_state.items = []
+    st.session_state["items"] = []
 if "status" not in st.session_state:
     st.session_state.status = ""
 a,b,c = st.columns(3)
@@ -150,7 +150,7 @@ with st.form("instructions"):
     submitted = st.form_submit_button("Update Game Script", type="primary")
 if submitted:
     with st.spinner("Updating game script..."):
-        st.session_state.items, _, st.session_state.status = ai_request(st.session_state.items, request, tipoff)
+        st.session_state["items"], _, st.session_state.status = ai_request(st.session_state.items, request, tipoff)
 if st.session_state.status:
     st.text(st.session_state.status)
 st.subheader("Game Script")
