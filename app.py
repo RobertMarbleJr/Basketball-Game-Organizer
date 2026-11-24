@@ -155,7 +155,7 @@ if st.session_state.status:
     st.text(st.session_state.status)
 st.subheader("Game Script")
 headers = ["ID", "Period", "Time / Game clock", "Event", "Personnel"]
-records = [dict(zip(headers, row)) for row in rows(st.session_state.items)]
+records = [dict(zip(headers, row)) for row in rows(st.session_state["items"])]
 if records:
     st.dataframe(records, hide_index=True, use_container_width=True)
 else:
