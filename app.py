@@ -150,7 +150,7 @@ with st.form("instructions"):
     submitted = st.form_submit_button("Update Game Script", type="primary")
 if submitted:
     with st.spinner("Updating game script..."):
-        st.session_state["items"], _, st.session_state.status = ai_request(st.session_state.items, request, tipoff)
+        st.session_state["items"], _, st.session_state.status = ai_request(st.session_state["items"], request, tipoff)
 if st.session_state.status:
     st.text(st.session_state.status)
 st.subheader("Game Script")
@@ -166,7 +166,7 @@ try:
     writer = csv.writer(buffer)
     writer.writerow(["Home", home, "Visitor", away, "Tipoff", formatted])
     writer.writerow(["ID", "Period", "Cue", "Event", "Personnel"])
-    writer.writerows(rows(st.session_state.items))
+    writer.writerows(rows(st.session_state["items"]))
     st.download_button("Export Game Script (CSV)", buffer.getvalue(), "basketball_game_script.csv", "text/csv")
 except ValueError:
     st.warning("Tipoff should look like 7:00 PM to export the script.")
